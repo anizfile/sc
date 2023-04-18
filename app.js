@@ -7,6 +7,7 @@ form.addEventListener('submit', function(event) {
   event.preventDefault();
   const searchTerm = searchInput.value;
   search(searchTerm);
+  searchInput.value = ''; // Membersihkan data di kotak pencarian
 });
 
 async function search(term) {
@@ -14,6 +15,7 @@ async function search(term) {
   const response = await fetch(`https://api2.trizy.co/api/yt/search?query=${term}`); // FETCH DATA FROM API URL
   const data = await response.json(); // CONVERT RESPONSE DATA INTO JSON
   const results = data.result;
+
   if (results.length === 0) {
     resultsDiv.innerHTML = '<p>No results</p>';
   } else {

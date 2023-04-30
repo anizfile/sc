@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Video Player</title>
-        <style>
-            video {
-                width: 640px;
-                height: 360px;
-            }
-        </style>
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+<link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet">
+<link href="https://unpkg.com/silvermine-videojs-quality-selector@1.1.2/dist/css/quality-selector.css" rel="stylesheet">
+
+<script src="https://unpkg.com/video.js@7/dist/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.0.9/videojs-contrib-quality-levels.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.1/dist/videojs-hls-quality-selector.min.js"></script>
 </head>
-<body>
-    <video id="videoPlayer" controls autoplay></video>
 
-    <script>
-        const url = 'https://anevi-live-channel-cdn.mncnow.id/live/eds/hbo-2/sa_dash_vmx/hbo-2.mpd';
-        const licenseServerUrl = 'https://mrpw.ptmnc01.verspective.net/?deviceId=NDIzMDJhZmUtYWRjMi0zNGJkLTkyN2EtYmE1ZDFlZWIwODEz';
+<video id="videojs" class="video-js vjs-fluid vjs-default-skin vjs-big-play-centered vjs-live vjs-liveui" controls preload="auto" autoplay muted fluid="true" liveui="true">
 
-        const config = {
-            'com.widevine.alpha': {
-                'serverURL': licenseServerUrl
-            }
-        };
+    <source src="https://live.cnnindonesia.com/livecnn/smil:cnntv.smil/playlist.m3u8" type="application/x-mpegURL">
+    <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+</video>
 
-        const player = dashjs.MediaPlayer().create();
-        player.initialize(document.getElementById('videoPlayer'), url, true, config);
-    </script>
+<script type="text/javascript">
+var player = videojs('videojs');
+player.hlsQualitySelector();
+</script>
 </body>
 </html>

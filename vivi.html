@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+        <style>
+            video {
+                width: 640px;
+                height: 360px;
+            }
+        </style>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+</head>
+<body>
+    <video id="videoPlayer" controls autoplay></video>
+
+    <script>
+        const url = 'https://anevi-live-channel-cdn.mncnow.id/live/eds/hbo-2/sa_dash_vmx/hbo-2.mpd';
+        const licenseServerUrl = 'https://mrpw.ptmnc01.verspective.net/?deviceId=NDIzMDJhZmUtYWRjMi0zNGJkLTkyN2EtYmE1ZDFlZWIwODEz';
+
+        const config = {
+            'com.widevine.alpha': {
+                'serverURL': licenseServerUrl
+            }
+        };
+
+        const player = dashjs.MediaPlayer().create();
+        player.initialize(document.getElementById('videoPlayer'), url, true, config);
+    </script>
+</body>
+</html>
